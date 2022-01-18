@@ -1,0 +1,19 @@
+.info-div{
+    position: fixed;
+    bottom: -60px;
+    height: 30px;
+    width: 100vw;
+    transition: transform 600ms ease-in-out;
+}
+.info-container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info-msg{
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: cornsilk;
+}

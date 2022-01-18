@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import './assets/fonts.css'
+import {withRouter,Route,HashRouter} from 'react-router-dom'
+import Layout from './components/Layout/Layout'
+import Login from './containers/Login/Login'
+import Dashboard from './containers/Dashboard/Dashboard';
 
-function App() {
+function App(props) {
+  useState(()=>{
+    if(localStorage.getItem('token')){
+      props.history.push('/dashboard')
+    }
+    else{
+      props.history.push('/')
+    }
+
+  },[props.location])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout>
+        <HashRouter>
+          {localStorage.getItem('token')?<Route path="/dashboard" exact component={Dashboard}></Route>:
+          <Route path="/" exact component={Login}></Route>}
+        </HashRouter>
+      </Layout>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
